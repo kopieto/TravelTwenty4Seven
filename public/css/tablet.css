@@ -1,0 +1,282 @@
+:root {
+    --dark: #1a1c20;
+    --blue: #0f4c75;
+    --white: #ebebeb;
+
+    --desktopSize: 1.8rem;
+    --footerHeight: 50px;
+    --pageHeight: calc(100% - var(--footerHeight));
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    color: var(--white);
+    background-color: var(--white);
+}
+
+div {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    margin: 5px;
+    font-size: 1.5rem;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: var(--desktopSize);
+    font-weight: 500;
+    margin: 2px 0 ;
+}
+
+h4 {
+    font-weight: 500;
+    color: var(--blue);
+    margin-top: 5px;
+}
+
+h5 {
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 500;
+}
+hr {
+    position: absolute;
+    border: solid 1px var(--blue);
+    right: 0;
+    bottom: calc(var(--footerHeight) - 10px);
+    width: 76.8%;
+    /* z-index: 1; */
+}
+
+footer {
+    background-color: transparent;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: var(--footerHeight);
+    text-align: center;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    background-color: var(--dark);
+    clip-path: polygon(20% 0, 32% 50%, 20% 100%, 100% 100%, 100% 0);
+    width: 100%;
+    height: 100%;
+    margin-bottom: var(--footerHeight);
+    z-index: -1;
+}
+
+.arrow {
+    position: absolute;
+    background-color: var(--blue);
+    clip-path: polygon(21% 0, 22% 0%, 34% 50%, 22% 100%, 21% 100%, 33% 50%);
+    width: 100%;
+    height: 100%;
+}
+
+.bg-image {
+    position: absolute;
+    top: 0;
+    /* background-image: linear-gradient(blue 25%, yellow 25%, 75%, red 75%); */
+    clip-path: polygon(20% 0, 32% 50%, 20% 100%, 0 100%, 0 0);
+    background-color: var(--blue);
+    background-image: url("../img/van.png");
+    background-size: contain;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}   
+
+.body {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(10 , 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: 
+        ". . . logo . . . . . . "
+        ". . . header header header header header header header"
+        ". . . roads roads roads roads roads roads roads";
+    justify-content: center;
+    text-align: left;
+    height: 100%;
+    width: 100%;
+}
+
+.logo {
+    grid-area: logo;
+    justify-self: start;
+    align-self: center;
+    margin-left: 60px;
+}
+
+.header {
+    grid-area: header;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    margin-left: 50px;
+
+}
+
+.roads {
+    grid-area: roads;
+    text-align: center;
+    justify-self: end;
+    align-self: end;
+    padding-bottom: 10px;
+    margin-bottom: var(--footerHeight);
+    margin-left: 50px;
+    margin-right: 30px;
+}
+
+.mobiles {
+    display: none;
+    grid-area: mobiles;
+    justify-self: center;
+    align-self: flex-end;
+    margin-bottom: var(--footerHeight);
+}
+
+.mobile-center {
+    text-align: left;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.flag {
+    width: var(--desktopSize);
+}
+
+.contact-link {
+    margin: 0 15px;
+    text-decoration: none;
+    color: var(--blue)
+}
+
+.contact-link:hover {
+    color: var(--white)
+}
+
+/* ****************************************************************************** */
+
+.navbar {
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    height: var(--footerHeight);
+    width: 76.8%;
+    background-color: transparent;
+    border-bottom: solid 2px var(--blue);
+    border-width: 10%;
+    justify-content: flex-end;
+    align-content: center;
+    z-index: 1;
+}
+
+.nav-link {
+    color: var(--white);
+    margin-right: 40px;
+    margin-top: 12px; 
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: var(--blue)
+}
+/* ABOUT PAGE */
+
+.contacts {
+    grid-area: header;
+    justify-self: center;
+}
+
+/* BOOKING PAGE */
+
+.form-inputs {
+    position: relative;
+    grid-column: 4/ 10 ;
+    grid-row:   1 / 4;
+    justify-self: end;
+    align-self: end;
+    margin-right: 10px;
+    margin-bottom: calc(var(--footerHeight) + 5px);  
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: 20%;
+}
+
+.form-element {
+    width: 240px;
+    margin: 5px 0;
+}
+
+input[type="text"] {
+    height: 30px;
+    width: 230px;
+    border-radius: 5px;
+    margin-top:5px;
+    border: none;
+    padding: 0 5px;
+    outline: none;
+}   
+
+input[type="checkbox"] {
+    margin: 10px 10px  10px 0;
+}
+
+.btn-sent {
+    margin: 20px 0;
+    position: absolute;
+    right: 25%;
+    bottom: 50px;
+    width: 120px;
+    height: 36px;
+    border-radius: 5px;
+    background-color: var(--blue);
+    color: var(--white);
+    border: none;
+}
+
+.btn-sent:hover {
+    cursor: pointer;
+}
+
+.checkboxes {
+   
+}
+
+.personal-info {
+    position: relative;
+}
+
+.hide, .btn-book-holder .back-btn{
+    display: none;
+}

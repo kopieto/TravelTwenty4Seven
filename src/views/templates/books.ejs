@@ -1,0 +1,67 @@
+<%- include("../partials/header") -%>
+
+<form id="form" class="form-inputs" action="/" method="POST">
+    <div id="pi" class="personal-info">
+
+        <div class="form-element">
+            <label>First name</label>
+            <input name="firstName" type="text" autocomplete="off">
+        </div>
+
+        <div class="form-element">
+            <label for="">Last name</label>
+            <input name="lastName" type="text" autocomplete="off">
+        </div>
+
+        <div class="form-element">
+            <label for="">Current city</label>
+            <input name="currentPosition" type="text" autocomplete="off">
+        </div>
+
+        <div class="form-element">
+            <label for="">Destination</label>
+            <input name="destination" type="text" autocomplete="off">
+        </div>
+
+        <div class="form-element">
+            <label for="">Phone</label>
+            <input name="mobileNumber" type="text" autocomplete="off">
+        </div><br>
+        <div class="checkboxes">
+            <label class="booking-label"><input for="#form" type="checkbox" name="passanger" value="true">I wish to be a
+                Passager</label><br>
+            <label class="booking-label" for="#form"><input id="unhide" type="checkbox" name="parcel" value="true">I
+                wish to sent a
+                Parcel</label>
+        </div>
+    </div>
+
+    <div id="parcel-info" class="parcel-info hide">
+        <div class="form-element">
+            <label>Weight</label>
+            <input name="weight" type="text" autocomplete="off">
+        </div>
+
+        <div class="form-element">
+            <label for="">Receiver Name</label>
+            <input name="rName" type="text" autocomplete="off">
+        </div>
+
+        <div class="form-element">
+            <label for="">Phone</label>
+            <input name="rNumber" type="text" autocomplete="off">
+        </div><br>
+
+        <a class="back-btn" href="/books">back</a>
+    </div>
+
+
+</form>
+
+
+
+<script src="js/checkbox.js"></script>
+</div>
+<button  class="btn-sent" form="form" type="submit">Sent</button>
+
+<%- include("../partials/footer") -%>
