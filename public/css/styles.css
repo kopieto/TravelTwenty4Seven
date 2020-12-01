@@ -1,0 +1,559 @@
+:root {
+    --dark: #000;
+    --blue: #3282b8;
+    --white: #ebebeb;
+    --headerHeight: 40px;
+    --footerHeight: 60px;
+    --marginArrow: 380px;
+    --marginAuto: 15px;
+}
+
+.test {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    text-decoration: none;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    color: var(--white);
+    background-color: var(--dark);
+}
+div {
+    justify-content: center;
+    align-content: start;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Amiri', serif;
+}
+
+/***********************************BACKGROUND SETUP BELOW***************************** */
+.bg-dark {
+    position: absolute;
+    clip-path: polygon(255px 0, 360px 50%, 255px 100%, 100% 100%, 100% 0);
+    background-color: var(--dark);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.bg-image {
+    position: absolute;
+    background-color: var(--blue);
+    background-image: url("../img/globe.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 360px;
+    height: 100%;
+    z-index: -1;
+}
+
+.bg-line {
+    position: absolute;
+    background-color: var(--blue);
+    clip-path: polygon(265px 0, 275px 0, var(--marginArrow) 50%, 275px 100%, 265px 100%, 370px 50%);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.logo-image {
+    position: absolute;
+    left: 320px;
+    top: 0;
+    z-index: 1;
+}
+
+/****************************BACKGROUND SETUP ABOVE******************/
+/* ************************* starter ejs setup below*************** */
+header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: fit-content;
+    height: var(--headerHeight);
+    z-index: 1;
+    /* border-bottom: 1px solid var(--blue); */
+    /* border-left: 1px solid var(--blue); */
+    padding-left: var(--marginAuto);
+}
+
+.my-navbar {
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.navbar-item {
+    margin-right: var(--marginAuto);
+    align-self: center;
+}
+
+.navbar-link {
+    color: var(--white);
+    font-size: 1rem;
+}
+
+.navbar-link:hover {
+    color: var(--blue);
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+    width: 100%;
+    width: calc(100% - 275px);
+    height: var(--footerHeight);
+}
+
+.footer-link {
+    padding: 0 var(--marginAuto);
+    color: var(--blue)
+}
+
+.footer-link:hover {
+    color: var(--white)
+}
+
+.page {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--marginArrow) auto;
+    grid-template-rows: var(--footerHeight) auto;
+
+    grid-template-areas:
+        ". ."
+        ". body";
+    height: calc(100% - var(--footerHeight));
+    padding: 0 var(--marginAuto);
+}
+
+.body {
+    position: absolute;
+    background-color: green;
+    grid-area: body;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+
+/**************************** starter ejs setup above **********************************************/
+/* Errors */
+.body-errors {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+}
+.error-msg {
+    align-self: center;
+}
+.body-index {
+    display: grid;
+    height: 100%;
+    grid-template-rows: 80px auto 80px;
+    justify-content: center;
+    align-content: space-between;
+    grid-template-areas:
+        "."
+        "msg"
+        "roads";
+}
+
+.msg {
+    grid-area: msg;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+}
+
+.msg-main {
+    font-size: 2rem;
+}
+
+.msg-extra-white {
+    font-size: 1.5rem;
+}
+
+.msg-extra-blue {
+    font-size: 1rem;
+    color: var(--blue);
+}
+
+.roads {
+    grid-area: roads;
+    justify-self: center;
+    align-self: end;
+    text-align: center;
+    padding-bottom: var(--marginAuto);
+}
+
+.roads-title {
+    font-size: 1rem;
+}
+
+.body-parcels {
+    position: relative;
+    grid-area: body;
+    padding: 70px var(--marginAuto) var(--footerHeight) 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.form-element {
+    width: 200px;
+    margin: 10px 0
+}
+
+input[type="text"] {
+    width: calc(100% - 10px);
+    height: 32px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 0 5px;
+}
+
+textarea {
+    outline: none;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+}
+
+select {
+    height: 32px;
+    width: 55%;
+    border-radius: 5px;
+    margin-left: 20px;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.selector {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    background-color: var(--blue);
+    color: var(--white);
+    font-size: 1.5rem;
+}
+
+.btn-sent {
+    position: relative;
+    left: 80px;
+    margin-top: 30px;
+}
+
+.btn-sent-travel {
+    width: 100%;
+    height: 40px;
+}
+
+.body-travel {
+    grid-area: body;
+    align-self: end;
+    justify-self: center;
+}
+
+.body-contacts {
+    grid-area: body;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        ". ."
+        "numbers numbers";
+}
+
+.numbers {
+    grid-area: numbers;
+    justify-self: end;
+    align-self: center;
+}
+
+.number {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.flag {
+    width: 2rem;
+}
+
+/* ******************************* WRITE ABOVE **********************************/
+@media screen and (min-width: 576px) and (max-width: 900px) {
+    .bg-dark {
+        clip-path: polygon(200px 0, 250px 50%, 200px 100%, 100% 100%, 100% 0);
+    }
+
+    .bg-line {
+        clip-path: polygon(210px 0, 260px 50%, 210px 100%, 220px 100%, 270px 50%, 220px 0);
+    }
+
+    .logo-image {
+        left: 240px;
+    }
+
+    footer {
+        width: calc(100% - 220px);
+    }
+
+    .page {
+        grid-template-columns: 270px auto;
+    }
+
+    .msg-main {
+        font-size: 1.6rem;
+    }
+
+    .msg-extra {
+        font-size: 1.2rem;
+    }
+
+    .body-parcels {
+        padding: 80px 1px var(--footerHeight) 5px;
+    }
+
+    .form-element {
+        width: 160px;
+        margin: 10px 0;
+    }
+
+    .form-box2 {
+        margin-left: 3px;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 10px);
+        height: 28px;
+    }
+
+    select {
+        height: 28px;
+        width: 104px;
+    }
+
+    .btn-sent {
+        left: 40px;
+        margin-top: 30px;
+
+    }
+
+}
+
+@media (max-width: 575px) {
+    .bg-dark {
+        clip-path: polygon(0 0, 100% 0, 100% 65%, 50% 60%, 0 65%);
+    }
+
+    .bg-image {
+        background-image: url("../img/globe-575x575.png");
+        bottom: 0;
+        width: 100vw;
+        width: 100%;
+        height: 50%;
+    }
+
+    .bg-line {
+        clip-path: polygon(0 64%, 50% 59%, 100% 64%, 100% 63%, 50% 58%, 0 63%);
+    }
+
+    .logo-image {
+        position: absolute;
+        left: 50%;
+        top: var(--marginAuto);
+        transform: translate(-50%, 0);
+    }
+
+    header {
+        display: none;
+    }
+
+    footer {
+        background-color: var(--dark);
+        width: 100%;
+    }
+
+    .navbar-item {
+        margin: 0 30px 0 0;
+    }
+
+    .page {
+        grid-template-columns: 1fr;
+        grid-template-rows: 100px auto;
+        grid-template-areas: "."
+            "body";
+    }
+
+    .body {
+        height: 55%;
+    }
+
+    /*****************start ejs setup above ************/
+    .body-index {
+        display: block;
+        height: 100%;
+        align-self: center;
+    }
+
+    .msg {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+    
+    }
+
+    .msg-main {
+        font-size: 2rem;
+    }
+
+    .msg-extra-white {
+        font-size: 1.5rem;
+    }
+
+    .msg-extra-blue {
+        font-size: 1.2rem;
+    }
+
+    .msg-extra-holder {
+        width: 100%;
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .roads {
+        display: none;
+    }
+
+    .block {
+        display: block;
+    }
+
+    .body-parcels {
+        padding: var(--footerHeight) 5px;
+        display: block;
+        text-align: left;
+    }
+
+    label {
+        font-size: 0.8rem;
+    }
+
+    input[type="text"] {
+        height: 24px;
+        margin-top: 1px;
+    }
+
+    select {
+        height: 24px;
+        width: 104px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    .form-box1 {
+        margin: calc(36px + 2%) auto 0;
+    }
+
+    .form-box2 {}
+
+    .form-element {
+        width: 60vw;
+        margin: 0 auto 5px;
+    }
+
+    textarea {
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+    }
+
+    .btn-sent {
+        margin: 10px auto;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .body-travel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: flex-end;
+        height: 78vh;
+        width: 100vw;
+    }
+
+    .btn-sent-travel {
+        position: fixed;
+        bottom: 100px;
+        transform: translate(-50%, 0);
+        width: 120px;
+    }
+
+    .body-contacts {
+        display: flex;
+        flex-flow: column;
+        align-content: center;
+        justify-content: center;
+        width: 100vw;
+        height: 80vh;
+        ;
+    }
+
+    .numbers {
+        text-align: left;
+    }
+
+    .number {
+        font-size: 1rem;
+        line-height: 1;
+    }
+
+    .flag {
+        width: 1.5rem;
+    }
+}

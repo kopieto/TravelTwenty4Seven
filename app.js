@@ -1,75 +1,35 @@
-// require("dotenv").config();
-// require("./src/db/mongoose");
+require("dotenv").config();
+require("./src/db/mongoose");
 
+const path = require("path")
 const express = require("express");
 const ejs = require("ejs");
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SG_KEY)
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, "public")));
+
+const indexRouter = require("./src/routers/index");
+const usersRouter = require("./src/routers/users");
+const parcelsRouter = require("./src/routers/parcels");
+const travelRouter = require("./src/routers/travel");
+
+
+// CONFIG
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/src/views");
+sgMail.setApiKey(process.env.SG_KEY);
+
+// app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.static(__dirname + "/public"));
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
 
-app.get("/", async (req, res) => {
-    res.render("templates/index");
-});
-
-app.post("/", async (req, res) => {
-    console.log(req.body);
-    let emailContent = "My name is " + req.body.firstName + " " + req.body.lastName +
-                    ". I didnt see the checkboxes. Please call me on " + req.body.mobileNumber;
-
-    if (req.body.passanger === "true" && req.body.parcel === "true") {
-        emailContent = "Hello my name is " + req.body.firstName + " " + req.body.lastName +
-            ". I wish to travel from " + req.body.currentPosition + " to " + req.body.destination +
-            ". I will have extra parcel with me. Parcel weight: " + req.body.weight +
-            " kg. Please call me on " + req.body.mobileNumber + "!"
-    } else {
-        if (req.body.passanger === "true") {
-            emailContent = "Hello my name is " + req.body.firstName + " " + req.body.lastName +
-                ". I wish to travel from " + req.body.currentPosition + " to " + req.body.destination +
-                ". Please call me on " + req.body.mobileNumber + "!"
-        };
-
-        if (req.body.parcel === "true") {
-            emailContent = "Hello my name is " + req.body.firstName + " " + req.body.lastName +
-                ". I need to send a parcel from " + req.body.currentPosition + " to " + req.body.destination +
-                ". Parcel weight: " + req.body.weight + " kg, Receiver: " + req.body.rName +
-                ", Mobile Number: " + req.body.rNumber +
-                ". Please call me on " + req.body.mobileNumber + " !"
-        };
-    }
-    console.log("~" + emailContent);
-
-    sgMail.send({
-        to: "ceco.sirakov@gmail.com",
-        from: "ceco.sirakov@gmail.com",
-        subject: "Traveling",
-        text: emailContent
-    })
-
-    res.render("templates/starter", {
-        content: "Thank you! We will contact you soon! "
-    });
-})
-
-app.get("/contacts", async (req, res) => {
-    res.render("templates/contacts");
-});
-
-app.get("/books", async (req, res) => {
-    res.render("templates/books");
-});
-
-app.get("/*", (req, res) => {
-    res.render("templates/starter", {
-        content: "404 Page doesn't exist"
-    })
-})
+app.use(parcelsRouter);
+app.use(travelRouter);
+app.use(usersRouter);
+app.use(indexRouter);
 
 //....................................................
 app.listen(process.env.PORT, () => {

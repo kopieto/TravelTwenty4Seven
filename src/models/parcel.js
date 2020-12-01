@@ -1,38 +1,93 @@
 const mongoose = require("mongoose");
 
 const parcelSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true,
-        trim: true,
-        lowercase: true
+    sender: {
+        name: {
+            type: String,
+            required: true,
+            trim: true,
+            lowercase: true
+        },
+        phoneNumber: {
+            type: Number,
+            required: true,
+            trim: true
+        },
+        email: {
+            type: String,
+            trim: true,
+            lowercase: true
+        },
+        address: {
+            country: {
+                type: String,
+                required: true,
+                trim: true,
+                lowercase: true
+            },
+            city: {
+                type: String,
+                required: true,
+                trim: true,
+                lowercase: true
+            },
+            address: {
+                type: String,
+                required: true,
+                trim: true,
+                lowercase: true
+            },
+            postcode: {
+                type: String,
+                required: true,
+                trim: true,
+                lowercase: true
+            }
+        }
     },
-    lastName: {
-        type: String,
-        required: true,
-        trim: true,
-        lowercase: true
-    },
-    weight: {
-        type: Number,
-        trim: true,
-        min: 0
-    },
-    currentPosition: {
-        type: String,
-        required: true,
-        trim: true,
-        lowercase: true
-    },
-    destination: {
-        type: String,
-        required: true,
-        trim: true,
-        lowercase: true
-    },
-    mobileNumber: {
-        type: String,
-        required: true,
-        trim: true
+    receiver: {
+        name: {
+            type: String,
+            required: true,
+            trim: true,
+            lowercase: true
+        },
+        phoneNumber: {
+            type: Number,
+            required: true,
+            trim: true
+        },
+        address: {
+            country: {
+                type: String,
+                required: true,
+                trim: true,
+                lowercase: true
+            },
+            city: {
+                type: String,
+                required: true,
+                trim: true,
+                lowercase: true
+            },
+            address: {
+                type: String,
+                required: true,
+                trim: true,
+                lowercase: true
+            },
+            postcode: {
+                type: String,
+                required: true,
+                trim: true,
+                lowercase: true
+            }
+        }
     }
-})
+}, {
+    timestamps: true
+});
+
+
+const Parcel = mongoose.model("Parcel", parcelSchema);
+module.exports = Parcel;
