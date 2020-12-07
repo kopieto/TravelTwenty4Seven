@@ -13,12 +13,6 @@
     display: none;
 }
 
-.test {
-    width: 100px;
-    height: 100px;
-    background-color: green;
-}
-
 * {
     position: relative;
     padding: 0;
@@ -35,7 +29,6 @@ body {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    margin: 0;
     color: var(--white);
     background-color: var(--dark);
 }
@@ -47,6 +40,17 @@ h4,
 h5,
 h6 {
     font-family: 'Amiri', serif;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 10px);
+    height: 32px;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 0 5px;
+    font-size: 1rem;
 }
 
 input[type="checkbox"] {
@@ -90,9 +94,43 @@ input[type="checkbox"] {
     z-index: 1;
 }
 
+.btn {
+    width: 96px;
+    height: 32px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--blue);
+    color: var(--white);
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.btn-right {
+    position: absolute;
+    right: 0;
+}
+
+.btn-max {
+    width: 100%;
+}
+
+
 
 /****************************BACKGROUND SETUP ABOVE******************/
 /* ************************* starter ejs setup below*************** */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: transparent;
+    width: 100%;
+    width: calc(100% - 275px);
+    height: var(--footerHeight);
+}
+
 header {
     position: absolute;
     top: 0;
@@ -103,7 +141,7 @@ header {
     padding-left: var(--marginAuto);
 }
 
-.my-navbar {
+.navbar {
     display: flex;
     justify-content: flex-end;
     height: 100%;
@@ -121,19 +159,6 @@ header {
 
 .navbar-link:hover {
     color: var(--blue);
-}
-
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    background-color: transparent;
-    width: 100%;
-    width: calc(100% - 275px);
-    height: var(--footerHeight);
 }
 
 .footer-link {
@@ -158,7 +183,7 @@ footer {
     padding: 0 var(--marginAuto);
 }
 
-.body {
+.page-body {
     position: relative;
     grid-area: body;
     height: 100%;
@@ -166,24 +191,10 @@ footer {
     z-index: 0;
 }
 
-
-
 /**************************** starter ejs setup above **********************************************/
-/* Errors */
-.body-errors {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-content: center;
-}
-
-.error-msg {
-    align-self: center;
-}
 
 /* index.ejs */
-.body-index {
+.index-body {
     display: grid;
     height: 100%;
     width: 100%;
@@ -193,26 +204,26 @@ footer {
         "roads";
 }
 
-.msg {
+.index-msg {
     grid-area: msg;
     align-self: center;
     text-align: center;
 }
 
-.msg-main {
+.index-msg-main {
     font-size: 2rem;
 }
 
-.msg-extra-white {
+.index-msg-extra-white {
     font-size: 1.5rem;
 }
 
-.msg-extra-blue {
+.index-msg-extra-blue {
     font-size: 1rem;
     color: var(--blue);
 }
 
-.roads {
+.index-roads {
     grid-area: roads;
     justify-self: center;
     align-self: end;
@@ -220,12 +231,12 @@ footer {
     padding-bottom: var(--marginAuto);
 }
 
-.roads-title {
+.index-roads-title {
     font-size: 1rem;
 }
 
 /* contacts.ejs */
-.body-contacts {
+.contacts-body {
     display: grid;
     height: 100%;
     justify-content: center;
@@ -233,105 +244,36 @@ footer {
     /* add if add more than numbers */
 }
 
-.numbers {
+.contacts-numbers {
     width: fit-content;
 }
 
-.number {
+.contacts-number {
     font-size: 1.2rem;
     line-height: 1;
 }
 
-.flag {
+.contacts-flag {
     width: 1.5rem;
 }
 
-.body-login {
+/* login.ejs */
+.login-body {
     width: 100%;
     height: 100%;
     align-self: center;
 }
 
-.form-login {
+.login-form {
     height: fit-content;
 }
 
-/* .body-parcels {
-    position: relative;
-    grid-area: body;
-    padding: 70px var(--marginAuto) var(--footerHeight) 10%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-} */
-
 .form-element {
-    width: 200px;
+    width: 240px;
     margin: 10px 0
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: calc(100% - 10px);
-    height: 32px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 5px;
-    padding: 0 5px;
-}
-
-textarea {
-    outline: none;
-    width: 100%;
-    height: 50px;
-    border-radius: 5px;
-}
-
-select {
-    height: 32px;
-    width: 55%;
-    border-radius: 5px;
-    margin-left: 20px;
-    padding: 0 5px;
-    cursor: pointer;
-}
-
-.selector {
-    display: flex;
-    justify-content: space-between;
-}
-
-.btn {
-    width: 96px;
-    height: 32px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: var(--blue);
-    color: var(--white);
-    font-size: 1rem;
-    margin-top: 10px;
-}
-
-.btn-right {
-    position: absolute;
-    right: 0;
-}
-
-.btn-sent {
-    left: 80px;
-    margin-top: 30px;
-}
-
-.btn-max {
-    width: 100%;
-}
-
-/* .body-travel {
-    align-self: end;
-    justify-self: center;
-} */
-
+/* signin.ejs */
 .signin-body {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -342,7 +284,7 @@ select {
 }
 
 /* user.ejs */
-.body-user {
+.user-body {
     height: 100%;
     display: grid;
     grid-template-columns: 160px auto;
@@ -375,6 +317,65 @@ select {
     grid-area: display;
 }
 
+/* parcels/home.ejs
+.parcels-form {
+    grid-area: display;
+    height: 100%;
+}
+
+.parcels-body {
+    display: grid;
+    height: 100%;
+    padding: 0 var(--marginAuto);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: calc(100%-60px) 60px;
+    grid-template-areas:
+        "box1 box2"
+        "box3 box3";
+}
+.parcels-box1 {
+    grid-area: box1;
+}
+.parcels-box2 {
+    grid-area: box2;
+    width: fit-content;
+}
+
+.parcels-box3 {
+    grid-area: box3;
+    margin-top: 10px;
+}
+.parcels-box3 > textarea {
+    width: calc(50% + 240px);
+    height: 60px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.btn-parcels {
+    transform: translate(0, -22px);
+} */
+
+
+
+/* Errors */
+/* .body-errors {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+}
+
+.error-msg {
+    align-self: center;
+} */
+/* .body-travel {
+    align-self: end;
+    justify-self: center;
+} */
 
 /* ******************************* WRITE ABOVE **********************************/
 @media screen and (min-width: 576px) and (max-width: 900px) {
@@ -436,6 +437,9 @@ select {
     }
 
 }
+
+
+
 
 @media (max-width: 575px) {
     .bg-dark {
@@ -618,3 +622,19 @@ select {
 
 
 }
+
+
+/* extra */
+/* select {
+    height: 32px;
+    width: 55%;
+    border-radius: 5px;
+    margin-left: 20px;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.selector {
+    display: flex;
+    justify-content: space-between;
+} */

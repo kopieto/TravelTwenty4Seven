@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const identify = require("../middlewares/identify")
 
 const Parcel = require("../models/parcel");
 
-router.get("/parcels", async (req, res) => {
-    res.render("parcels/home");
+router.get("/parcels", identify, async (req, res) => {
+    res.render("parcels/parcels-form", {
+        user: req.user
+    });
 });
 
 router.post("/parcels", async (req, res) => {

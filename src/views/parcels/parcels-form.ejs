@@ -1,0 +1,60 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/user-header") -%>
+<form id="parcels-form" class="parcels-form" action="/parcels" method="POST">
+
+    <div class="parcels-body">
+
+        <div class="parcels-box1">
+            <div class="form-element">
+                <h2>Sender info</h2>
+            </div>
+
+            <div class="form-element">
+                <input name="sender.name" type="text" autocomplete="off" placeholder="Name" required>
+            </div>
+
+            <div class="form-element">
+                <input name="sender.number" type="text" autocomplete="off" placeholder="Phone Number" required>
+            </div>
+            <div class="form-element">
+                <input name="sender.email" type="text" autocomplete="off" placeholder="Email">
+            </div>
+
+            <div class="form-element">
+                <input name="sender.address" type="text" autocomplete="off" placeholder="Address">
+            </div>
+        </div>
+
+        <div class="parcels-box2">
+            <div class="form-element">
+                <h2> Delivery info</h2>
+            </div>
+            <div class="form-element">
+                <input name="receiverName" type="text" autocomplete="off" placeholder="Name">
+            </div>
+
+            <div class="form-element">
+                <input name="receiverNumber" type="text" autocomplete="off" placeholder="Phone Number">
+            </div>
+            <div class="form-element">
+                <input name="receiverEmail" type="text" autocomplete="off" placeholder="Email">
+            </div>
+
+            <div class="form-element">
+                <input name="receiverAddress" type="text" autocomplete="off" placeholder="Address">
+            </div>
+            <!-- <div class="form-element">
+            </div> -->
+
+        </div>
+
+        <div class="parcels-box3">
+            <label>Comment</label><br>
+            <textarea class="" name="comment" id="" cols="10" rows="1"></textarea>
+            <button class="btn btn-parcels" form="parcels-form" type="submit">send</button>
+
+        </div>
+    </div>
+</form>
+<%- include("../partials/user-footer") -%>
+<%- include("../partials/footer") -%>
