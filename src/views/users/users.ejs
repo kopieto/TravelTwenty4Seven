@@ -1,7 +1,7 @@
 <%- include("../partials/header") -%>
 
 <% users.forEach((user) => { %>
-    <p> <%=user.name%> </p>
+    <a href="/users/<%=user._id%>"><p> <%=user.name%> </p></a>
  <% })  %> 
 
 <%- include("../partials/footer") -%>

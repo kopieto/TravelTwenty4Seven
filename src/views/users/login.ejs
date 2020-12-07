@@ -1,0 +1,31 @@
+<%- include("../partials/header") -%>
+
+<div class="body-login">
+
+    <div>
+        <form id="form-login" class="form-login" action="/users/login" method="POST">
+
+            <div class="form-element">
+                <label for="">Email</label>
+                <input name="email" type="text" placeholder="john@email.com" required>
+            </div>
+
+            <div class="form-element">
+                <label for="">Password</label>
+                <input name="password" type="password" autocomplete="off" placeholder="password" required>
+            </div>
+        </form>
+    </div>
+    <div class="form-element">
+
+        <a href="/users/signin"> <button class="btn">Sign In</button> </a>
+
+        <button form="form-login" class="btn btn-right" type="submit">Login</button>
+
+    </div>
+    
+    <p><%=loginError%></p>
+</div>
+
+
+<%- include("../partials/footer") -%>

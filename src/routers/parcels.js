@@ -4,7 +4,7 @@ const router = express.Router();
 const Parcel = require("../models/parcel");
 
 router.get("/parcels", async (req, res) => {
-    res.render("templates/parcels");
+    res.render("parcels/home");
 });
 
 router.post("/parcels", async (req, res) => {
