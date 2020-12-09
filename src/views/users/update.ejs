@@ -1,0 +1,50 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/user-header") -%>
+
+
+<form action="/users/update" method="POST">
+
+    <div class="signin-body">
+
+        <div class="signin-main">
+            <div class="form-element">
+                <input name="name" type="text" autocomplete="off" placeholder="Name">
+            </div>
+            <div class="form-element">
+                <input name="email" type="text" autocomplete="off" placeholder="Email">
+            </div>
+            <div class="form-element">
+                <input name="password" type="password" autocomplete="off" placeholder="New Password">
+            </div>
+            <div class="form-element">
+                <input name="phoneNumber" type="text" autocomplete="off" placeholder="Phone Number">
+            </div>
+        </div>
+        <div class="signin-address">
+            <div class="form-element">
+                <input name="country" type="text" autocomplete="off" placeholder="Country">
+            </div>
+            <div class="form-element">
+                <input name="city" type="text" autocomplete="off" placeholder="City">
+            </div>
+            <div class="form-element">
+                <input name="street" type="text" autocomplete="off" placeholder="Street">
+            </div>
+            <div class="form-element">
+                <input name="postcode" type="text" autocomplete="off" placeholder="Postcode">
+            </div>
+        </div>
+
+
+        <div class="form-element">
+            <input name="currentPassword" type="password" autocomplete="off" placeholder="Current Password" required>
+        </div>
+        <div class="form-element">
+            <button type="submit" class="btn btn-right">Update</button>
+        </div>
+
+
+    </div>
+</form>
+<%- include("../partials/user-footer") -%>
+<%- include("../partials/footer") -%>

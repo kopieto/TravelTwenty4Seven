@@ -1,0 +1,17 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/user-header") -%>
+    
+
+       <%  parcels.forEach(parcel => { %>
+            <div class="user-parcel">
+                <i class="fas fa-box fa-3x"></i><br>
+                <span class="user-parcel-name"><%= parcel.rName %> </span>
+            </div>
+       <% }) %>
+
+        
+
+
+ 
+<%- include("../partials/user-footer") -%>
+<%- include("../partials/footer") -%>

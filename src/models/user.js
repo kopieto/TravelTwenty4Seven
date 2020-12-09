@@ -69,25 +69,24 @@ userSchema.statics.login = async (email, password) => {
         throw new Error("Invalid username or password!");
     }
 
-    const isMatch = await bcrypt.compare(password, user.password)
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
         throw new Error("Invalid username or password!")
     }
-
+    
     const token = await user.tokenGenerator();
+
     return { user, token };
 }
-
-userSchema.pre("save", async function () {
-    if (this.isModified("password")) {
-        this.password = await bcrypt.hash(this.password, 8);
-    }
-})
 
 userSchema.methods.tokenGenerator = async function () {
     const token = await sign({
         _id: this._id
-    }, process.env.JWT_SECRET, {expiresIn: "1 day"});
+    }, process.env.JWT_SECRET, {expiresIn: process.env.SESS_MAXAGE});
+
+    console.log("New token created!");
+    console.log(token);
+
     this.tokens.push({
         token
     });
@@ -96,6 +95,11 @@ userSchema.methods.tokenGenerator = async function () {
     return token
 }
 
+userSchema.pre("save", async function () {
+    if (this.isModified("password")) {
+        this.password = await bcrypt.hash(this.password, 8);
+    }
+});
 
 const User = mongoose.model("User", userSchema);
 

@@ -1,0 +1,22 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/user-header") -%>
+
+<h1>Parcels</h1>
+
+<% parcels.forEach(parcel => { %>
+       <p> 
+           <a href="/users/<%= parcel.sender %>"> <%= parcel.sName %> </a> -
+            <select name="" id="">
+                <option value="<%= parcel.status %>" ><%= parcel.status %></option>
+                <option value="requested" >Requested</option>
+                <option value="collected" >Collected</option>
+                <option value="in transit" >In Transit</option>
+                <option value="delivered" >Delivered</option>
+            </select>
+        </p>
+<% }) %>
+
+<!-- add event listener for the selector -->
+<script src="/js/allParcels.js"></script> 
+<%- include("../partials/user-footer") -%>
+<%- include("../partials/footer") -%>

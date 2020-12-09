@@ -5,25 +5,25 @@ const User = require("../models/user");
 
 const identify = async (req, res, next) => {
     try {
-        const verified = await verify(req.cookies.t247, process.env.JWT_SECRET);
+        const {
+            _id
+        } = await verify(req.session.t247, process.env.JWT_SECRET);
         const user = await User.findOne({
-            _id: verified._id,
-            'tokens.token': req.cookies.t247
-        })
+            _id,
+            'tokens.token': req.session.t247
+        });
 
         if (!user) {
-            res.redirect("/users/login");
+            res.redirect("/login");
         } else {
-            req.user = user;
-            req.token = req.cookies.t247;
 
-            delete req.cookies.t247;
+            req.user = user;
             next();
         }
     } catch (err) {
-        console.log(err)
-        res.status(401).send("Unauthorized request")
+        console.log("from Identify!: " + err)
+        res.redirect("/login")
     }
 }
 
-module.exports = identify
+module.exports = identify;

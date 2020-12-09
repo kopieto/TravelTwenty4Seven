@@ -1,9 +1,8 @@
 require("dotenv").config();
 require("./src/db/mongoose");
 
-
-const path = require("path")
 const express = require("express");
+const session = require("express-session");
 const ejs = require("ejs");
 const cookieParser = require("cookie-parser");
 const sgMail = require('@sendgrid/mail');
@@ -15,7 +14,6 @@ const indexRouter = require("./src/routers/index");
 const usersRouter = require("./src/routers/users");
 const parcelsRouter = require("./src/routers/parcels");
 const travelRouter = require("./src/routers/travel");
-const { json } = require("express");
 
 
 // CONFIG
@@ -23,12 +21,25 @@ app.set("view engine", "ejs");
 app.set("views", __dirname + "/src/views");
 sgMail.setApiKey(process.env.SG_KEY);
 
-// app.use(express.static(path.join(__dirname, "public")));
 
+//Middlewares
 app.use(express.static(__dirname + "/public"));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+//basic and recommended setup for session
+app.use(session({
+    name: process.env.SESS_NAME,
+    secret: process.env.SESS_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: Number(process.env.SESS_MAXAGE), //10min in development
+        sameSite: true,
+        secure: process.env.NODE_ENV === "production", 
+    }
+}));
 
 app.use(parcelsRouter);
 app.use(travelRouter);

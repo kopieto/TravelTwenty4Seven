@@ -48,7 +48,6 @@ input[type="password"] {
     width: calc(100% - 10px);
     height: 32px;
     border-radius: 5px;
-    margin-top: 5px;
     padding: 0 5px;
     font-size: 1rem;
 }
@@ -155,6 +154,7 @@ header {
 .navbar-link {
     color: var(--white);
     font-size: 1rem;
+    text-transform: capitalize;
 }
 
 .navbar-link:hover {
@@ -270,7 +270,10 @@ header {
 
 .form-element {
     width: 240px;
-    margin: 10px 0
+    margin-bottom: 10px;
+}
+.login-error {
+    color:#f05454;
 }
 
 /* signin.ejs */
@@ -285,12 +288,13 @@ header {
 
 /* user.ejs */
 .user-body {
+    margin-top: -10px;
     height: 100%;
     display: grid;
     grid-template-columns: 160px auto;
     grid-template-rows: 60px auto;
     grid-template-areas:
-        "username username"
+        "buttons username"
         "buttons display";
 }
 
@@ -308,55 +312,52 @@ header {
 
 .user-directions {
     grid-area: buttons;
-    justify-self: center;
     width: 100%;
-    margin-top: 20px;
+    align-self: center;
 }
 
 .user-display {
     grid-area: display;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    flex-flow: wrap;
 }
 
-/* parcels/home.ejs
-.parcels-form {
-    grid-area: display;
-    height: 100%;
-}
-
-.parcels-body {
-    display: grid;
-    height: 100%;
-    padding: 0 var(--marginAuto);
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: calc(100%-60px) 60px;
-    grid-template-areas:
-        "box1 box2"
-        "box3 box3";
-}
-.parcels-box1 {
-    grid-area: box1;
-}
-.parcels-box2 {
-    grid-area: box2;
-    width: fit-content;
-}
-
-.parcels-box3 {
-    grid-area: box3;
-    margin-top: 10px;
-}
-.parcels-box3 > textarea {
-    width: calc(50% + 240px);
-    height: 60px;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 1.5rem;
+.user-parcel {
+    text-align: center;
+    width: 240px;
+    height: 100px;
     margin: 10px 0;
+    color: var(--blue);
+}
+.user-parcel-name {
+    font-family: 'Dancing Script', cursive;
+
+    font-size: 1.5rem;
+    text-transform: capitalize;
 }
 
-.btn-parcels {
-    transform: translate(0, -22px);
-} */
+/* parcels-form.ejs */
+.parcels-body {
+    grid-area: display;
+    padding-left: 50px;
+
+    justify-content: center;
+}
+
+.parcels-form {
+    display: grid;
+    grid-template-columns: 240px auto;
+    gap: var(--marginAuto);
+}
+
+.parcels-textarea {
+    border-radius: 5px;
+    width: 240px;
+    height: 80px;
+}
 
 
 

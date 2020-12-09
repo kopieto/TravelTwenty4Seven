@@ -1,60 +1,49 @@
 <%- include("../partials/header") -%>
 <%- include("../partials/user-header") -%>
-<form id="parcels-form" class="parcels-form" action="/parcels" method="POST">
+<div class="parcels-body">
+    <p class="">Delivery details</p>
 
-    <div class="parcels-body">
+    <form id="parcels-form" class="parcels-form" action="/parcels" method="POST">
+        <div>
 
-        <div class="parcels-box1">
             <div class="form-element">
-                <h2>Sender info</h2>
+                <input name="rName" type="text" autocomplete="off" placeholder="Name">
             </div>
 
             <div class="form-element">
-                <input name="sender.name" type="text" autocomplete="off" placeholder="Name" required>
+                <input name="rPhoneNumber" type="text" autocomplete="off" placeholder="Phone Number">
             </div>
 
             <div class="form-element">
-                <input name="sender.number" type="text" autocomplete="off" placeholder="Phone Number" required>
-            </div>
-            <div class="form-element">
-                <input name="sender.email" type="text" autocomplete="off" placeholder="Email">
+                <input name="rCountry" type="text" autocomplete="off" placeholder="Country">
             </div>
 
             <div class="form-element">
-                <input name="sender.address" type="text" autocomplete="off" placeholder="Address">
+                <input name="rCity" type="text" autocomplete="off" placeholder="City">
+            </div>
+
+            <div class="form-element">
+                <input name="rStreet" type="text" autocomplete="off" placeholder="Street">
+            </div>
+
+            <div class="form-element">
+                <input name="rPostcode" type="text" autocomplete="off" placeholder="Postcode">
             </div>
         </div>
 
-        <div class="parcels-box2">
+        <div>
             <div class="form-element">
-                <h2> Delivery info</h2>
+                <textarea class="parcels-textarea" name="comment" id="" cols="10" rows="1"
+                    placeholder="Leave a comment"></textarea>
             </div>
             <div class="form-element">
-                <input name="receiverName" type="text" autocomplete="off" placeholder="Name">
-            </div>
 
-            <div class="form-element">
-                <input name="receiverNumber" type="text" autocomplete="off" placeholder="Phone Number">
+                <button class="btn btn-right" form="parcels-form" type="submit">send</button>
             </div>
-            <div class="form-element">
-                <input name="receiverEmail" type="text" autocomplete="off" placeholder="Email">
-            </div>
-
-            <div class="form-element">
-                <input name="receiverAddress" type="text" autocomplete="off" placeholder="Address">
-            </div>
-            <!-- <div class="form-element">
-            </div> -->
-
         </div>
 
-        <div class="parcels-box3">
-            <label>Comment</label><br>
-            <textarea class="" name="comment" id="" cols="10" rows="1"></textarea>
-            <button class="btn btn-parcels" form="parcels-form" type="submit">send</button>
+    </form>
 
-        </div>
-    </div>
-</form>
+</div>
 <%- include("../partials/user-footer") -%>
 <%- include("../partials/footer") -%>

@@ -1,53 +1,79 @@
 const express = require("express");
 const User = require("../models/user");
+const Parcel = require("../models/parcel");
 const identify = require("../middlewares/identify");
-const auth = require("../middlewares/auth")
+const confirm = require("../middlewares/confirm")
+// const auth = require("../middlewares/auth");
 const router = express.Router();
 
-router.get("/users", identify, auth, async (req, res) => {
-    try {
-        const users = await User.find();
-        res.render("users/users", {
-            users,
-        });
+// router.get("/users", identify, auth, async (req, res) => {
+//     try {
+//         const users = await User.find();
+//         res.render("users/users", {
+//             logLink: req.session.t247 ? "logout" : "login",
+//             users
+//         });
 
+//     } catch (err) {
+//         console.log(err);
+//         res.redirect("/users/me");
+//     }
+// });
+
+
+
+
+
+//create different render for admins
+router.get("/users/home", identify, async (req, res) => {
+    try {
+        let parcels = await Parcel.find({
+            sender: req.user._id
+        });
+        parcels = parcels.filter(parcel => parcel.status !== "delivered");
+
+        res.render("users/home", {
+            logLink: (req.session.t247 ? "logout" : "login"),
+            username: req.user.name,
+            parcels
+        });
     } catch (err) {
-        console.log(err);
-        res.redirect("/users/me");
+        res.redirect("/users/login");
     }
 });
+
+router.get("/users/update", identify, async (req, res) => {
+
+    res.render("users/update", {
+        logLink: req.session.t247 ? "logout" : "login",
+        username: req.user.name
+    });
+});
+
+router.get("/users/history", identify, async (req, res) => {
+    const parcels = await Parcel.find({ sender: req.user._id }, {rName: 1, status: 1, rCountry:1 });
+    res.send(parcels)
+})
+
+router.get("/users/:id", async (req, res) => {
+    const user = await User.findById(req.params.id);
+
+
+    //create page to render with parcels and travel history
+    res.send(user);
+})
 
 router.post("/users", async (req, res) => {
     try {
         const user = new User(req.body);
         const token = await user.tokenGenerator();
 
-        res.cookie("t247", token)
-            .render("users/user", {
-                user: user,
-            });
+        req.session.t247 = token;
+        res.redirect("/users/home");
     } catch (err) {
         console.log(err);
         res.redirect("/users/signin");
     }
-});
-
-router.get("/users/signin", async (req, res) => {
-    res.render("users/signin");
-});
-
-router.get("/users/login", async (req, res) => {
-    if (req.cookies.t247) {
-        const user = await User.findOne({
-            "tokens.token": req.cookies.t247
-        });
-        if (user) {
-            res.redirect("/users/me")
-        }
-    }
-        res.render("users/login", {
-            loginError: ""
-        });
 });
 
 router.post("/users/login", async (req, res) => {
@@ -57,52 +83,40 @@ router.post("/users/login", async (req, res) => {
             token
         } = await User.login(req.body.email, req.body.password);
 
-        res.cookie("t247", token)
-            .render("users/user", {
-                user: user,
-            });;
-
-
+        req.session.t247 = token;
+        res.redirect("/users/home");
     } catch (err) {
         console.log(err);
-        res.render("users/login", {
+        res.render("templates/login", {
+            logLink: req.session.t247 ? "logout" : "login",
             loginError: err.message
         });
     }
-
-})
-
-
-//create different render for admins
-router.get("/users/me", identify, async (req, res) => {
-    try {
-        res.render("users/user", {
-            user: req.user,
-        });
-    } catch (err) {
-        res.redirect("users/login")
-    }
 });
 
-router.get("/users/logout", identify, async (req, res) => {
+router.post("/users/update", identify, confirm, async (req, res) => {
     try {
-        const user = req.user;
-        user.tokens = user.tokens.filter(token => token.token !== req.token)
-        await user.save()
+        const allowUpdates = ["name", "email", "password", "phoneNumber", "country", "city", "street", "postcode"];
+        const updates = Object.keys(req.body);
+        const isValid = updates.every(update => allowUpdates.includes(update));
 
-        res.redirect("/");
+        if (!isValid) {
+            res.send("invalid inputs")
+        } else {
+            const user = req.user;
+            updates.forEach(update => {
+                if (req.body[update]) {
+                    user[update] = req.body[update];
+                }
+            })
+
+            await user.save();
+            res.redirect("/users/home?updated");
+        }
     } catch (err) {
-        console.log(err)
-        res.redirect("/")
+        console.log(err);
+        res.send(err);
     }
 });
-
-router.get("/users/:id", identify, auth, async (req, res) => {
-    const user = await User.findById(req.params.id);
-
-
-    //create page to render with parcels and travel history
-    res.send(user);
-})
 
 module.exports = router;
