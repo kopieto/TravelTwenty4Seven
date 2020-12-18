@@ -1,21 +1,28 @@
 <%- include("../partials/header") -%>
 <%- include("../partials/user-header") -%>
-<div class="parcels-body">
-    <p class="">Delivery details</p>
+    <h2 class="parcels-title">Delivery details:</h2>
 
     <form id="parcels-form" class="parcels-form" action="/parcels" method="POST">
         <div>
-
             <div class="form-element">
                 <input name="rName" type="text" autocomplete="off" placeholder="Name">
             </div>
-
             <div class="form-element">
                 <input name="rPhoneNumber" type="text" autocomplete="off" placeholder="Phone Number">
             </div>
 
-            <div class="form-element">
-                <input name="rCountry" type="text" autocomplete="off" placeholder="Country">
+            <div class="parcel-selector">
+                <label for="rCountry">Destination: </label>
+                <select name="rCountry" id="rCountry">
+                    <option value="uk">Anglia</option>
+                    <option value="france">Franta</option>
+                    <option value="poland">Olanda</option>
+                    <option value="belgium">Belgia</option>
+                    <option value="germany">Germania</option>
+                    <option value="austria">Austria</option>
+                    <option value="hungary">Ungaria</option>
+                    <option value="romania">Romania</option>
+                </select>            
             </div>
 
             <div class="form-element">
@@ -29,21 +36,16 @@
             <div class="form-element">
                 <input name="rPostcode" type="text" autocomplete="off" placeholder="Postcode">
             </div>
-        </div>
-
-        <div>
-            <div class="form-element">
+            <div class="element">
                 <textarea class="parcels-textarea" name="comment" id="" cols="10" rows="1"
                     placeholder="Leave a comment"></textarea>
             </div>
             <div class="form-element">
-
-                <button class="btn btn-right" form="parcels-form" type="submit">send</button>
+                <button class="btn right" form="parcels-form" type="submit">Send</button>
             </div>
         </div>
 
     </form>
 
-</div>
-<%- include("../partials/user-footer") -%>
-<%- include("../partials/footer") -%>
+    <%- include("../partials/user-footer") -%>
+    <%- include("../partials/footer") -%>

@@ -1,31 +1,32 @@
 <%- include("../partials/header") -%>
-
-<div class="login-body">
-
-    <div>
-        <form id="login-form" class="login-form" action="/users/login" method="POST">
-
-            <div class="form-element">
-                <label for="">Email</label>
-                <input name="email" type="text" placeholder="john@email.com" required>
+<form id="login-form" action="/users/login" method="POST">
+    <div class="login-body">
+        <div class="login-holder">
+            <div class="login-element">
+                <label for="email">Email</label>
+                <input name="email" type="text" placeholder="john@email.com" autofocus required>
             </div>
 
-            <div class="form-element">
-                <label for="">Password</label>
-                <input name="password" type="password" autocomplete="off" placeholder="password" required>
+            <div id="password" class="login-element">             
+                <label for="password">Password</label>
+                <input  name="password" type="password" autocomplete="off" placeholder="password" required>
             </div>
-        </form>
+
+            <div class="login-element">
+                <button form="login-form" class="btn right" type="submit">Login</button>
+
+                <a href="/signin"> <button class="btn" type="button">Sign In</button> </a>
+
+            </div>
+
+            <p class="login-error"><%=loginError%></p>
+            <div class="mb mt">
+                <a id="forgot" >Forgoten Password?</a>
+
+            </div>
+
+        </div>
     </div>
-    <div class="form-element">
-
-        <a href="/signin"> <button class="btn">Sign In</button> </a>
-
-        <button form="login-form" class="btn btn-right" type="submit">Login</button>
-
-    </div>
-    
-    <p class="login-error"><%=loginError%></p>
-</div>
-
-
+</form>
+<script src="/js/login.js"></script>
 <%- include("../partials/footer") -%>

@@ -1,6 +1,5 @@
 const express= require("express");
 const loginCheck = require("../middlewares/redirects");
-const identify = require("../middlewares/identify");
 const router = express.Router();
 
 
@@ -31,43 +30,8 @@ router.get("/login", loginCheck, async (req, res) => {
     });
 });
 
-router.get("/logout", identify, async (req, res) => {
-    try {
-        const user = req.user;
-        user.tokens = user.tokens.filter(token => token.token !== req.session.t247);
-        await user.save();
-
-        req.session.destroy(err => {
-            if (err) {
-                res.redirect("users/home")
-            }
-        });
-
-        res.clearCookie(process.env.SESS_NAME)
-            .redirect("/");
-    } catch (err) {
-        console.log(err)
-        res.send(err)
-    }
-});
-
-
-//can create a function for logout
-router.get("/logout/all", identify, async (req, res) => {
-    const user = req.user;
-    user.tokens = [];
-    await user.save();
-
-    req.session.destroy(err => {
-        if (err) {
-            res.redirect("users/home")
-        }
-    });
-    res.clearCookie(process.env.SESS_NAME)
-        .redirect("/");
-});
-
-
+router.get("/logout", async (req,res) => {
+    res.redirect("/users/logout");
+})
 
 module.exports = router;
-

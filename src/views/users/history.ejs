@@ -1,0 +1,29 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/user-header") -%>
+
+
+  <%  parcels.forEach(parcel => { %>
+  <div class="history-parcel">
+        <i class="fas fa-box"></i>
+        <span class="parcel-item"><%= parcel.rName %> </span>
+        <span class="parcel-item"><%=parcel.rCountry %> </span>
+        <span class="parcel-item"><%=parcel.status %> </span>
+  </div>
+  <% }) %>
+
+  <%  tickets.forEach(ticket => { %>
+    <div class="history-ticket">
+      <i class="fas fa-ticket-alt"></i>
+        <span class="travel-date">
+          <%= ticket.date.getDate() %> / <%= ticket.date.getMonth() + 1 %> / <%= ticket.date.getFullYear() %>
+        </span>
+        <span>
+          <%= destination  %> 
+        </span>
+
+        
+    </div>
+    <% }) %>
+
+<%- include("../partials/user-footer") -%>
+<%- include("../partials/footer") -%>

@@ -1,58 +1,9 @@
 <%- include("../partials/header") -%>
-<div class="body-travel">
-    <form id="form-travel" action="/travel" method="POST">
-        <div>
-            <h2>Personal info</h2>
-
-        <div class="form-element">
-            <label>Name</label>
-            <input name="travelName" type="text" autocomplete="off" required>
-        </div>
-
-        <div class="form-element">
-            <label for="">Phone Number</label>
-            <input name="travelNumber" type="text" autocomplete="off" required>
-        </div>
-
-        <div class="form-element selector">
-            <label for="">From</label>
-            <select class="parcels-select" name="from" id="">
-                <option value="">Choose city</option>
-                <option value="London">London</option>
-                <option value="Bucarest">Bucarest</option>
-            </select>
-        </div>
-        <div class="form-element selector">
-            <label for=""> To</label>
-            <select class="parcels-select" name="to" id="">
-                <option value="">Choose city</option>
-                <option value="London">London</option>
-                <option value="Bucarest">Bucarest</option>
-            </select>
-        </div>
-
-        <div class="form-element">
-            <label>Comment</label>
-            <textarea name="comment" id="" cols="20" rows="4"></textarea>
-        </div>
-
-    <button class="btn btn-sent-travel" form="form-travel" type="submit">send</button>
+<%- include("../partials/user-header") -%>
+<div class="travel-body">
+      <!-- custom calendar -->
         
-    </form>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </div>
+<%- include("../partials/user-footer") -%>
 <%- include("../partials/footer") -%>

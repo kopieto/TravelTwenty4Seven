@@ -16,13 +16,12 @@ const identify = async (req, res, next) => {
         if (!user) {
             res.redirect("/login");
         } else {
-
             req.user = user;
             next();
         }
     } catch (err) {
-        console.log("from Identify!: " + err)
-        res.redirect("/login")
+        console.log(err)
+        res.redirect("/")
     }
 }
 

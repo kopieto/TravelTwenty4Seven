@@ -1,0 +1,56 @@
+<%- include("../partials/header") -%>
+<%- include("../partials/user-header") -%>
+<div class="travel-body">
+    <div id="datepicker" class="datepicker">
+
+        <div class="date">
+            <div id="date"></div>
+        </div>
+        <div class="month">
+            <button id="prev-month" class="arrow">&lt;</button>
+            <div id="month"></div>
+            <button id="next-month" class="arrow">&gt;</button>
+        </div>
+
+        <div class="weekday">M</div>
+        <div class="weekday">T</div>
+        <div class="weekday">W</div>
+        <div class="weekday">T</div>
+        <div class="weekday">F</div>
+        <div class="weekend">S</div>
+        <div class="weekend">S</div>
+    </div>
+
+    <form id="travel-form" class="travel-form hidden" method="post" target="/travels">
+        <div id="tickets-left" class="date"></div>
+        <p id="ticket-username" class="ticket-element"></p>
+        <p id="ticket-route" class="ticket-element"></p>
+        <p id="ticket-date" class="ticket-element"></p>
+        <input id="date-input" type="hidden" class="ticket-element" name="date">
+        <div class="selector">
+            <label class="ticket-element">Destination: </label>
+            <select id="destination" name="destination" class="ticket-select"></select>
+        </div>
+        <div  class="selector">
+            <label id="ticket-label" class="ticket-element">Tickets: </label>
+            <select id="tickets" name="ticketsRequest" class="ticket-select"></select>
+        </div>
+        
+        <div>
+            <button id="request-btn" type="submit" class="btn btn-right">Request</button>
+
+        </div>
+
+    </form>
+
+    <p class="travel-info-msg">We are traveling on Friday from Romania and on Sunday From UK</p>
+
+</div>
+
+
+
+
+
+<script src="/js/travel.js"></script>
+<%- include("../partials/user-footer") -%>
+<%- include("../partials/footer") -%>

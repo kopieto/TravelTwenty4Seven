@@ -11,8 +11,28 @@ router.get("/parcels", identify, async (req, res) => {
     });
 });
 
+router.get("/parcels/all", identify, auth, async (req, res) => {
+    try {
+        const parcels = await Parcel.find();
+
+        if (parcels.length < 1) {
+            res.send("Parcels list is empty");
+        } else {
+            res.render("parcels/all", {
+                username: req.user.name,
+                parcels
+            });
+        }
+    } catch (err) {
+        console.log(err);
+        res.send(err);
+    }
+});
+
 router.post("/parcels", identify, async (req, res) => {
     try {
+        console.log(req.body)
+
         const parcel = new Parcel({
             ...req.body,
             sender: req.user._id,
@@ -33,27 +53,7 @@ router.post("/parcels", identify, async (req, res) => {
         console.log(err);
         res.send(err);
     }
-
-
 });
-
-router.get("/parcels/all", identify, auth, async (req, res) => {
-    try {
-        const parcels = await Parcel.find();
-
-        if (parcels.length < 1) {
-            res.send("Parcels list is empty");
-        } else {
-            res.render("parcels/all", {
-                username: req.user.name,
-                parcels
-            });
-        }
-    } catch (err) {
-        console.log(err);
-        res.send(err);
-    }
-})
 
 router.post("/parcels/update", identify, async (req, res) => {
     console.log(req.body);

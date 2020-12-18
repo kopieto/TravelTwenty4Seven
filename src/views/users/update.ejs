@@ -3,35 +3,36 @@
 
 
 <form action="/users/update" method="POST">
+    <p>Enter field to edit</p>
 
     <div class="signin-body">
 
         <div class="signin-main">
             <div class="form-element">
-                <input name="name" type="text" autocomplete="off" placeholder="Name">
+                <input class="update-input" tit le="name" name="name" type="text" autocomplete="off" placeholder="Name" value=<%=username%>>
             </div>
             <div class="form-element">
-                <input name="email" type="text" autocomplete="off" placeholder="Email">
+                <input class="update-input" name="email" type="text" autocomplete="off" placeholder="Email" value=<%=email%>>
             </div>
             <div class="form-element">
-                <input name="password" type="password" autocomplete="off" placeholder="New Password">
+                <input class="update-input" name="password" type="password" autocomplete="off" placeholder="New Password">
             </div>
             <div class="form-element">
-                <input name="phoneNumber" type="text" autocomplete="off" placeholder="Phone Number">
+                <input class="update-input" name="phoneNumber" type="text" autocomplete="off" placeholder="Phone Number" value=<%=phoneNumber%>>
             </div>
         </div>
         <div class="signin-address">
             <div class="form-element">
-                <input name="country" type="text" autocomplete="off" placeholder="Country">
+                <input class="update-input" name="country" type="text" autocomplete="off" placeholder="Country" value=<%=country%>>
             </div>
             <div class="form-element">
-                <input name="city" type="text" autocomplete="off" placeholder="City">
+                <input class="update-input" name="city" type="text" autocomplete="off" placeholder="City" value=<%=city%>>
             </div>
             <div class="form-element">
-                <input name="street" type="text" autocomplete="off" placeholder="Street">
+                <input class="update-input" name="street" type="text" autocomplete="off" placeholder="Street" value=<%=street%>>
             </div>
             <div class="form-element">
-                <input name="postcode" type="text" autocomplete="off" placeholder="Postcode">
+                <input class="update-input" name="postcode" type="text" autocomplete="off" placeholder="Postcode" value=<%=postcode%> >
             </div>
         </div>
 
@@ -40,11 +41,12 @@
             <input name="currentPassword" type="password" autocomplete="off" placeholder="Current Password" required>
         </div>
         <div class="form-element">
-            <button type="submit" class="btn btn-right">Update</button>
+            <button id="update-btn" type="submit" class="btn btn-right">Update</button>
         </div>
 
 
     </div>
 </form>
+
 <%- include("../partials/user-footer") -%>
 <%- include("../partials/footer") -%>

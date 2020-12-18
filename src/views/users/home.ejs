@@ -1,17 +1,25 @@
 <%- include("../partials/header") -%>
 <%- include("../partials/user-header") -%>
-    
+  <div class="user-element">
+    <label class="user-data"><i class="fa-margin fas fa-envelope"> </i><%=user.email %> </label>
+  </div>
+  <div class="user-element">
+    <label class="user-data"><i class="fa-margin fas fa-phone-alt"></i><%= user.phoneNumber %></label>
+  </div>
+  <div class="user-element">
+    <label class="user-data capitalized"><i class="fa-margin fas fa-globe-europe margin10"></i><%= user.country %>,
+      <%=user.city %>, <%=user.street %> </label>
 
-       <%  parcels.forEach(parcel => { %>
-            <div class="user-parcel">
-                <i class="fas fa-box fa-3x"></i><br>
-                <span class="user-parcel-name"><%= parcel.rName %> </span>
-            </div>
-       <% }) %>
+  </div>
+  <div class="user-element">
+    <label class="user-data">
+      <i class="fa-margin fas fa-map-marker-alt"></i><%= user.postcode %>
+    </label>
+  </div>
 
-        
+<a class="user-msg" href="<%=msgHref %> "><%=msg%></a>
 
 
- 
+
 <%- include("../partials/user-footer") -%>
 <%- include("../partials/footer") -%>

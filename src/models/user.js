@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
+const sgMail = require("@sendgrid/mail");
 const bcrypt = require("bcryptjs");
-const { sign } = require("jsonwebtoken");
+const {
+    sign,
+    verify
+} = require("jsonwebtoken");
+const Travel = require("../models/travel");
+const Parcel = require("../models/parcel");
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -61,38 +67,81 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 
-userSchema.statics.login = async (email, password) => { 
+userSchema.statics.login = async (email, password) => {
     const user = await User.findOne({
         email
     });
     if (!user) {
         throw new Error("Invalid username or password!");
-    }
+    } else {
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            throw new Error("Invalid username or password!")
+        } else {
+            //delete expiry tokens
+            user.tokens = user.tokens.filter(token => verify(token.token, process.env.JWT_SECRET, (err, decoded) => {
+                if (err) {
+                    return false
+                } else {
+                    return true
+                }
+            }));
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-        throw new Error("Invalid username or password!")
-    }
-    
-    const token = await user.tokenGenerator();
+            const token = await user.tokenGenerator();
 
-    return { user, token };
+            return {
+                user,
+                token
+            };
+        }
+    }
 }
 
 userSchema.methods.tokenGenerator = async function () {
     const token = await sign({
         _id: this._id
-    }, process.env.JWT_SECRET, {expiresIn: process.env.SESS_MAXAGE});
-
-    console.log("New token created!");
-    console.log(token);
+    }, process.env.JWT_SECRET, {
+        expiresIn: `${ process.env.SESS_MAXAGE }`
+    });
 
     this.tokens.push({
         token
     });
     await this.save();
-
     return token
+}
+
+userSchema.methods.findTickets = async function () {
+
+    return await Travel.find({
+        "passangers.user": this._id
+    });
+}
+
+userSchema.methods.findParcels = async function () {
+    return await Parcel.find({
+        sender: this._id
+    }, {
+        status: 1,
+        rName: 1,
+        rCountry: 1,
+        updatedAt: 1
+    });
+}
+
+userSchema.methods.sendEmail = async function (subject, text) {
+    try {
+        const msg = {
+            to: this.email,
+            from: "ceco.sirakov@gmail.com",
+            subject,
+            text
+        }
+        await sgMail.send(msg);
+    } catch (err) {
+        console.log(err);
+        console.error("console.error: " + err);
+    }
 }
 
 userSchema.pre("save", async function () {

@@ -5,7 +5,7 @@
 
         <div class="signin-main">
             <div class="form-element">
-                <input name="name" type="text" autocomplete="off" placeholder="Name" required>
+                <input name="name" type="text" autocomplete="off" placeholder="Name" required autofocus>
             </div>
             <div class="form-element">
                 <input name="email" type="text" autocomplete="off" placeholder="Email" required>
@@ -16,8 +16,6 @@
             <div class="form-element">
                 <input name="phoneNumber" type="text" autocomplete="off" placeholder="Phone Number" required>
             </div>
-        </div>
-        <div class="signin-address">
             <div class="form-element">
                 <input name="country" type="text" autocomplete="off" placeholder="Country" required>
             </div>
@@ -30,14 +28,15 @@
             <div class="form-element">
                 <input name="postcode" type="text" autocomplete="off" placeholder="Postcode" required>
             </div>
+            <input type="checkbox" name="agreement" id="signIn" value="true" required>
+            <label for="signIn">I agree with terms and conditions</label>
+                <button type="submit" class="btn right">Sign In</button>    
         </div>
 
-
-        <div class="signin-checkbox">
-            <input type="checkbox" name="agreement" id="" value="true" required><label>I agree with term and
-                conditions</label>
+        <div class="terms-box">
+            <h1>Terms and conditions:</h1>
+            <embed src="/txt/Terms.txt" type="text/html">
         </div>
-        <button type="submit" class="btn">Sign In</button>
 
 
     </div>
