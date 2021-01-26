@@ -4,7 +4,7 @@
         <div class="login-holder">
             <div class="login-element">
                 <label for="email">Email</label>
-                <input name="email" type="text" placeholder="john@email.com" autofocus required>
+                <input name="email" type="email" placeholder="john@doe.com" autofocus required>
             </div>
 
             <div id="password" class="login-element">             
@@ -15,14 +15,13 @@
             <div class="login-element">
                 <button form="login-form" class="btn right" type="submit">Login</button>
 
-                <a href="/signin"> <button class="btn" type="button">Sign In</button> </a>
+                <a href="/users/signin"> <button class="btn" type="button">Sign In</button> </a>
 
             </div>
 
             <p class="login-error"><%=loginError%></p>
             <div class="mb mt">
-                <a id="forgot" >Forgoten Password?</a>
-
+                <a class="forgotten-password" id="forgot" >Forgotten Password...</a>
             </div>
 
         </div>

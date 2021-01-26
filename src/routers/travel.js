@@ -4,21 +4,26 @@ const setTravelOptions = require("../middlewares/setTravelOptions");
 const Travel = require("../models/travel");
 const router = express.Router();
 
-router.get("/travel", identify, async (req, res) => {
-    res.render("templates/travel-form", {
-        logLink: (req.session.t247 ? "logout" : "login"),
-        username: req.user.name
-    });
+router.get("/travels", identify, async (req, res) => {
+    try {
+        res.render("templates/travel", {
+            logLink: (req.session.t247 ? "logout" : "login"),
+            user: req.user
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(503).send();
+    }
 });
 
-router.get("/travels", identify, async (req, res) => {
+router.get("/tickets", identify, async (req, res) => {
     try {
         const {
             date
         } = req.query;
 
         let response = await setTravelOptions(date, req.user.name)
-
+        console.log(req.query);
         res.send(response)
     } catch (err) {
         console.log(err);
@@ -37,16 +42,19 @@ router.get("/travels/all", async (req, res) => {
     }
 })
 
-router.post("/travel", identify, async (req, res) => {
-    console.log(req.body);
+router.post("/travels", identify, async (req, res) => {
+    console.log("req.body:");
+    console.log(req.body.date);
     try {
         let booked = false;
         const travel = await Travel.findOne({
             date: req.body.date
         });
+     
 
         travel.passangers.forEach(passanger => {
-            if (passanger.user.toString() == req.user._id.toString()) {
+            console.log(passanger.destination, " = ", req.body.destination);
+            if (passanger.user.toString() == req.user._id.toString() && passanger.destination === req.body.destination.toLowerCase()) {
                 passanger.tickets = Number(passanger.tickets) + Number(req.body.ticketsRequest);
                 booked = true;
             }
@@ -63,13 +71,25 @@ router.post("/travel", identify, async (req, res) => {
         travel.ticketsLeft -= req.body.ticketsRequest;
         await travel.save();
 
-        res.redirect("users/home?msg=We will call you ASAP to confirm your booking!");
+        res.redirect("users/history?msg=Thank you! We will call you soon!");
     } catch (err) {
         console.log(err);
         res.send(err.message)
     }
 
 
+});
+
+router.get("/travels/*", identify, async (req, res) => {
+    try {
+        res.render("templates/travel", {
+            logLink: (req.session.t247 ? "logout" : "login"),
+            user: req.user
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(503).send();
+    }
 });
 
 

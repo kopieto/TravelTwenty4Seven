@@ -1,5 +1,7 @@
 <%- include("../partials/header") -%>
 <%- include("../partials/user-header") -%>
+<div class="parcels-body">
+
     <h2 class="parcels-title">Delivery details:</h2>
 
     <form id="parcels-form" class="parcels-form" action="/parcels" method="POST">
@@ -22,7 +24,7 @@
                     <option value="austria">Austria</option>
                     <option value="hungary">Ungaria</option>
                     <option value="romania">Romania</option>
-                </select>            
+                </select>
             </div>
 
             <div class="form-element">
@@ -46,6 +48,7 @@
         </div>
 
     </form>
+</div>
 
-    <%- include("../partials/user-footer") -%>
-    <%- include("../partials/footer") -%>
+<%- include("../partials/user-footer") -%>
+<%- include("../partials/footer") -%>

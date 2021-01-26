@@ -5,7 +5,7 @@ document.querySelector("#forgot").addEventListener("click", function (e) {
    const input = div.appendChild(document.createElement("input"));
    const btn = div.appendChild(document.createElement("button"));
 
-   form.setAttribute("action", "/users/password");
+   form.setAttribute("action", "/users/no-password");
    form.setAttribute("id", "fp");
 
    div.setAttribute("class", "login-element");

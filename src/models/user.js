@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 const sgMail = require("@sendgrid/mail");
 const bcrypt = require("bcryptjs");
 const {
+    generate
+} = require("generate-password");
+const {
     sign,
     verify
 } = require("jsonwebtoken");
+
 const Travel = require("../models/travel");
 const Parcel = require("../models/parcel");
 
@@ -97,6 +101,36 @@ userSchema.statics.login = async (email, password) => {
     }
 }
 
+userSchema.statics.randomPassword = async (email) => {
+    let msg = "Please check your email!";
+    const user = await User.findOne({
+        email
+    });
+
+    if (user) {
+        const name = user.name.split(" ")[0];
+
+        const newPassword = generate({
+            length: 12,
+            numbers: true,
+        });
+
+        const title = "New password";
+        const body =
+            `Hello ${name.slice(0,1).toUpperCase() + name.slice(1)}! This email contains your new password.
+     Please change it ASAP to your memorable and secure password.
+      Your password is: ${newPassword}`;
+
+        user.sendEmail(title, body);
+        user.password = newPassword;
+        user.save();
+    } else {
+        msg = "Please try again later";
+    }
+
+    return msg;
+}
+
 userSchema.methods.tokenGenerator = async function () {
     const token = await sign({
         _id: this._id
@@ -112,10 +146,24 @@ userSchema.methods.tokenGenerator = async function () {
 }
 
 userSchema.methods.findTickets = async function () {
-
-    return await Travel.find({
+    const travels = await Travel.find({
         "passangers.user": this._id
     });
+    console.log(travels);
+    const tickets = [];
+
+    travels.forEach(travel => {
+        const passangers = travel.passangers;
+        passangers.forEach(passanger => {
+            if (passanger.user.toString() === this._id.toString()) {
+                const ticket = Object.assign(passanger, { date: travel.date});
+                tickets.push(ticket)
+            }
+        })
+
+    })
+
+    return tickets;
 }
 
 userSchema.methods.findParcels = async function () {

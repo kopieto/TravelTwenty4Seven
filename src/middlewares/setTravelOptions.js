@@ -29,7 +29,6 @@ const setTravelOptions = async (date, username) => {
         username,
         tickets: travel.ticketsLeft,
         route,
-        // pickUpPoint,
         destinations
     }
 }

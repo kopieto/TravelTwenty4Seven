@@ -1,5 +1,7 @@
 <%- include("../partials/header") -%>
 <%- include("../partials/user-header") -%>
+<div class="home-body">
+
   <div class="user-element">
     <label class="user-data"><i class="fa-margin fas fa-envelope"> </i><%=user.email %> </label>
   </div>
@@ -13,13 +15,13 @@
   </div>
   <div class="user-element">
     <label class="user-data">
-      <i class="fa-margin fas fa-map-marker-alt"></i><%= user.postcode %>
+      <i class="fa-margin fas fa-map-marker-alt"></i><%= user.postcode.toUpperCase() %>
     </label>
   </div>
 
-<a class="user-msg" href="<%=msgHref %> "><%=msg%></a>
+    <a class="user-msg" href="<%=msgHref %> "><%=msg%></a>
 
-
+</div>
 
 <%- include("../partials/user-footer") -%>
 <%- include("../partials/footer") -%>

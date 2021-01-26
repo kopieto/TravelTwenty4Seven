@@ -1,29 +1,45 @@
 <%- include("../partials/header") -%>
 <%- include("../partials/user-header") -%>
 
+<div class="history-body">
 
+
+<% if (parcels.length < 1 && tickets.length < 1) { %>
+  <p>Book your first service...</p>
+  <% } %>
+<div class="all-parcels"> 
   <%  parcels.forEach(parcel => { %>
-  <div class="history-parcel">
-        <i class="fas fa-box"></i>
+  <div class="parcel">
+    <span class="parcel-item"><%=parcel.status %> </span>
+
+        <i class="fas fa-box parcel-icon"></i>
+<span>to </span>
         <span class="parcel-item"><%= parcel.rName %> </span>
+        <span>in </span>
         <span class="parcel-item"><%=parcel.rCountry %> </span>
-        <span class="parcel-item"><%=parcel.status %> </span>
   </div>
   <% }) %>
+</div>
+
+<div class="all-tickets">
 
   <%  tickets.forEach(ticket => { %>
     <div class="history-ticket">
-      <i class="fas fa-ticket-alt"></i>
         <span class="travel-date">
           <%= ticket.date.getDate() %> / <%= ticket.date.getMonth() + 1 %> / <%= ticket.date.getFullYear() %>
         </span>
-        <span>
-          <%= destination  %> 
+       <%=ticket.tickets  %>x <i class="fas fa-ticket-alt fa-margin"></i>
+
+        <span class="uppercase-first">
+          <%= ticket.destination  %> 
         </span>
 
         
     </div>
     <% }) %>
+  </div>
+</div>
+
 
 <%- include("../partials/user-footer") -%>
 <%- include("../partials/footer") -%>

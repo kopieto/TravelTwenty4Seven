@@ -14,14 +14,14 @@ const identify = async (req, res, next) => {
         });
 
         if (!user) {
-            res.redirect("/login");
+            res.redirect("/users/login?msg=Please login!");
         } else {
             req.user = user;
             next();
         }
     } catch (err) {
-        console.log(err)
-        res.redirect("/")
+        console.log("identify: " + err.message);
+        res.redirect("/");
     }
 }
 

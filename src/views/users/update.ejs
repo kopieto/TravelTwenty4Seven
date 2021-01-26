@@ -1,52 +1,37 @@
 <%- include("../partials/header") -%>
 <%- include("../partials/user-header") -%>
+<div class="update-body">
+    <p class="update-header">Enter field to edit: </p>
 
-
-<form action="/users/update" method="POST">
-    <p>Enter field to edit</p>
-
-    <div class="signin-body">
-
-        <div class="signin-main">
-            <div class="form-element">
-                <input class="update-input" tit le="name" name="name" type="text" autocomplete="off" placeholder="Name" value=<%=username%>>
-            </div>
-            <div class="form-element">
-                <input class="update-input" name="email" type="text" autocomplete="off" placeholder="Email" value=<%=email%>>
-            </div>
-            <div class="form-element">
-                <input class="update-input" name="password" type="password" autocomplete="off" placeholder="New Password">
-            </div>
-            <div class="form-element">
-                <input class="update-input" name="phoneNumber" type="text" autocomplete="off" placeholder="Phone Number" value=<%=phoneNumber%>>
-            </div>
-        </div>
-        <div class="signin-address">
-            <div class="form-element">
-                <input class="update-input" name="country" type="text" autocomplete="off" placeholder="Country" value=<%=country%>>
-            </div>
-            <div class="form-element">
-                <input class="update-input" name="city" type="text" autocomplete="off" placeholder="City" value=<%=city%>>
-            </div>
-            <div class="form-element">
-                <input class="update-input" name="street" type="text" autocomplete="off" placeholder="Street" value=<%=street%>>
-            </div>
-            <div class="form-element">
-                <input class="update-input" name="postcode" type="text" autocomplete="off" placeholder="Postcode" value=<%=postcode%> >
-            </div>
+    <form class="update-form" id="update-form" action="/users/update" method="POST">
+        <select class="updator" id="update-options" autofocus>
+            <option value="name">Name</option>
+            <option value="email">Email</option>
+            <option value="phoneNumber">Phone Number</option>
+            <option value="password">New Password</option>
+            <option value="country">Country</option>
+            <option value="city">City</option>
+            <option value="street">Street</option>
+            <option value="postcode">Postcode</option>
+        </select>
+        <div class="login-element">
+            <input id="update" type="text" name="name" placeholder="Name" required>
         </div>
 
+        <div class="login-element">
+            <p class="update-label">Password:</p>
 
-        <div class="form-element">
-            <input name="currentPassword" type="password" autocomplete="off" placeholder="Current Password" required>
+            <input id="new" type="password" name="currentPassword" placeholder="password" required>
         </div>
-        <div class="form-element">
-            <button id="update-btn" type="submit" class="btn btn-right">Update</button>
+        <div class="login-element">
+
+            <button class="btn right" form="update-form" type="submit">Send</button>
         </div>
+    </form>
+
+</div>
 
 
-    </div>
-</form>
-
+<script src="/js/update.js"></script>
 <%- include("../partials/user-footer") -%>
 <%- include("../partials/footer") -%>

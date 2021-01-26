@@ -7,7 +7,7 @@ const auth = require("../middlewares/auth");
 router.get("/parcels", identify, async (req, res) => {
     res.render("parcels/parcels-form", {
         logLink: req.session.t247 ? "logout" : "login",
-        username: req.user.name
+        user: req.user
     });
 });
 
@@ -19,7 +19,7 @@ router.get("/parcels/all", identify, auth, async (req, res) => {
             res.send("Parcels list is empty");
         } else {
             res.render("parcels/all", {
-                username: req.user.name,
+                user: req.user,
                 parcels
             });
         }
@@ -66,9 +66,13 @@ router.post("/parcels/update", identify, async (req, res) => {
     //     text: emailContent
     // })
 
-    res.render("templates/starter", {
-        content: "Thank you! We will call you soon"
+   res.redirect("/");
+});
 
+router.get("/parcels/*", identify, async (req, res) => {
+    res.render("parcels/parcels-form", {
+        logLink: req.session.t247 ? "logout" : "login",
+        user: req.user
     });
 });
 

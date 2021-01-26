@@ -1,68 +1,3 @@
-:root {
-    --dark: #000;
-    --blue: #3282b8;
-    --white: #ebebeb;
-    --logoHeight: 100px;
-    --headerHeight: 60px;
-    --footerHeight: 60px;
-    --marginArrow: 380px;
-    --marginAuto: 20px;
-}
-
-.mb {
-    margin-bottom: 10px;
-}
-
-.mt {
-    margin-top: 10px;
-}
-
-.hidden {
-    display: none;
-}
-
-* {
-    box-sizing: border-box;
-    position: relative;
-    padding: 0;
-    margin: 0;
-    border: none;
-    /* outline: none; */
-    text-decoration: none;
-}
-
-a {
-    color: var(--white);
-}
-
-a:hover {
-    color: var(--blue);
-}
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--white);
-    background-color: var(--dark);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: 'Amiri', serif;
-}
-
-form {
-    height: 100%;
-}
-
 input[type="text"],
 input[type="email"],
 input[type="password"] {
@@ -98,6 +33,7 @@ select {
     position: absolute;
     right: 0;
 }
+
 .max-width {
     width: 100%;
 }
@@ -114,7 +50,9 @@ select {
 /***********************************BACKGROUND SETUP BELOW***************************** */
 .bg-dark {
     position: absolute;
+    /* clip-path: polygon(255px 0, 360px 50%, 255px 100%, 100% 100%, 100% 0); */
     clip-path: polygon(25% 0, 30% 50%, 25% 100%, 100% 100%, 100% 0);
+
     background-color: var(--dark);
     width: 100%;
     height: 100%;
@@ -127,6 +65,7 @@ select {
     background-image: url("../img/globe.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    /* width: 360px; */
     width: 30%;
     height: 100%;
     z-index: -1;
@@ -135,6 +74,7 @@ select {
 .bg-line {
     position: absolute;
     background-color: var(--blue);
+    /* clip-path: polygon(265px 0, 275px 0, var(--marginArrow) 50%, 275px 100%, 265px 100%, 370px 50%); */
     clip-path: polygon(26% 0, 27% 0, 32% 50%, 27% 100%, 26% 100%, 31% 50%);
 
     width: 100%;
@@ -144,6 +84,7 @@ select {
 
 .bg-logo {
     position: absolute;
+    /* left: 320px; */
     left: 12.5%;
     top: 0;
     transform: translate(-50%, 0);
@@ -161,6 +102,7 @@ footer {
     right: 0;
     background-color: transparent;
     width: 70%;
+    /* width: calc(100% - 275px); */
     height: var(--footerHeight);
 }
 
@@ -339,11 +281,7 @@ header {
 
 .terms-box embed {
     width: 100%;
-    height: 100%;
-}
-
-.signin-btn {
-    bottom: 30px;
+    height: 80%;
 }
 
 /* user.ejs */
@@ -395,6 +333,7 @@ header {
     width: 100%;
     height: 100%;
     display: grid;
+    justify-content: center;
     align-content: center;
 }
 
@@ -403,7 +342,6 @@ header {
 }
 
 .user-data {
-    margin-left: 10%;
     font-size: 1.2rem;
 }
 
@@ -411,7 +349,7 @@ header {
     position: absolute;
     width: 100%;
     text-align: center;
-    left: 25%;
+    left: 40%;
     bottom: 5%;
     transform: translate(-50%, 0);
     font-size: 1.2rem;
@@ -423,6 +361,8 @@ header {
     grid-area: body;
     justify-self: center;
     align-self: center;
+    transform: translate(-50%, 0);
+
 }
 
 .update-header {
@@ -439,19 +379,21 @@ header {
 
 /* parcels-form.ejs */
 .parcels-body {
-    grid-area: body;
-    padding: 0 20px;
+    padding: 20px;
 }
 
 .parcels-title {
-    margin: 0 20px 20px;
+    line-height: 1;
+    width: fit-content;
+    margin: 0 50px 20px;
     font-size: 1.5rem;
     font-weight: 200;
+
 }
 
 .parcels-form {
-    height: fit-content;
     display: grid;
+    grid-template-columns: 240px auto;
     gap: var(--marginAuto);
 }
 
@@ -461,7 +403,6 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 36px;
-    width: 240px;
     background-color: var(--white);
     color: var(--dark);
     margin-bottom: 10px;
@@ -492,6 +433,12 @@ header {
     align-self: center;
 }
 
+.all-parcels,
+.all-tickets {
+    /* align-self: center; */
+    /* height: 100%; */
+}
+
 .parcel-icon {
     color: var(--blue);
 }
@@ -513,7 +460,6 @@ header {
 .uppercase-first {
     text-transform: capitalize;
 }
-
 .travel-body {
     grid-area: body;
     display: grid;
@@ -630,8 +576,7 @@ header {
 .travel-form {
     width: 224px;
     min-height: 296px;
-    background-color: #e8ffff;
-
+    background-color: var(--white);
     color: var(--dark);
     align-self: start;
     justify-self: center;
@@ -673,258 +618,3 @@ header {
     grid-column: 1 / -1;
     align-self: center;
 }
-
-.request-btn {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-}
-
-/* Errors */
-/* .body-errors {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-content: center;
-}
-
-.error-msg {
-    align-self: center;
-} */
-/* .body-travel {
-    align-self: end;
-    justify-self: center;
-} */
-
-/* ******************************* WRITE ABOVE **********************************/
-
-
-@media screen and (min-width: 576px) and (max-width: 960px) {
-
-    .index-msg-main {
-        font-size: 1.8rem;
-    }
-
-    .index-msg-extra-white {
-        font-size: 1.3rem;
-    }
-
-    .signin-body {
-        grid-template-columns: 200px 1fr;
-    }
-
-    .form-element {
-        width: 200px;
-    }
-
-    .user-msg {
-        left: 10%;
-    }
-    .parcels-title {
-        font-size: 1.3rem;
-        font-weight: 200;
-    
-    }
-    .parcel-selector {
-        width: 200px;
-    }
-    .parcel-selector label {
-        font-size: 1rem;
-    }
-    .parcel-selector select {
-        font-size: 0.8rem;
-    }
-
-    .parcels-textarea {
-        width: 200px;
-    }
-
-}
-
-
-
-
-@media (max-width: 575px) {
-    .bg-dark {
-        clip-path: polygon(0 0, 100% 0, 100% 65%, 50% 60%, 0 65%);
-    }
-
-    .bg-image {
-        background-image: url("../img/globe-575x575.png");
-        bottom: 0;
-        width: 100vw;
-        width: 100%;
-        height: 50%;
-    }
-
-    .bg-line {
-        clip-path: polygon(0 64%, 50% 59%, 100% 64%, 100% 63%, 50% 58%, 0 63%);
-    }
-
-    .bg-logo {
-        position: absolute;
-        left: 50%;
-        top: var(--marginAuto);
-        transform: translate(-50%, 0);
-    }
-
-    header {
-        display: none;
-    }
-
-    footer {
-        background-color: var(--dark);
-        width: 100%;
-    }
-
-    .navbar-item {
-        margin: 0 30px 0 0;
-    }
-
-    .page {
-        grid-template-columns: 1fr;
-        grid-template-rows: 100px auto;
-        grid-template-areas: "."
-            "body";
-    }
-
-    .body {
-        height: 55%;
-    }
-
-    /*****************start ejs setup above ************/
-    .body-index {
-        display: block;
-        height: 100%;
-        align-self: center;
-    }
-
-    .msg {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        height: 100%;
-
-    }
-
-    .msg-main {
-        font-size: 2rem;
-    }
-
-    .msg-extra-white {
-        font-size: 1.5rem;
-    }
-
-    .msg-extra-blue {
-        font-size: 1.2rem;
-    }
-
-    .msg-extra-holder {
-        width: 100%;
-        position: absolute;
-        top: 55%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .roads {
-        display: none;
-    }
-
-    .block {
-        display: block;
-    }
-
-    .body-parcels {
-        padding: var(--footerHeight) 5px;
-        display: block;
-        text-align: left;
-    }
-
-    label {
-        font-size: 0.8rem;
-    }
-
-    input[type="text"] {
-        height: 24px;
-        margin-top: 1px;
-    }
-
-    select {
-        height: 24px;
-        width: 104px;
-    }
-
-    h2 {
-        text-align: center;
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
-    .form-box1 {
-        margin: calc(36px + 2%) auto 0;
-    }
-
-    .form-box2 {}
-
-    .form-element {
-        width: 60vw;
-        margin: 0 auto 5px;
-    }
-
-    textarea {
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-    }
-
-    .btn-sent {
-        margin: 10px auto;
-        left: 50%;
-        transform: translate(-50%, 0);
-    }
-
-    .body-travel {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: flex-end;
-        height: 78vh;
-        width: 100vw;
-    }
-
-    .btn-sent-travel {
-        position: fixed;
-        bottom: 100px;
-        transform: translate(-50%, 0);
-        width: 120px;
-    }
-
-    .body-contacts {
-        display: flex;
-        flex-flow: column;
-        align-content: center;
-        justify-content: center;
-        width: 100vw;
-        height: 80vh;
-        ;
-    }
-
-    .numbers {
-        text-align: left;
-    }
-
-    .number {
-        font-size: 1rem;
-        line-height: 1;
-    }
-
-    .flag {
-        width: 1.5rem;
-    }
-
-
-}
-
-/* ****************************************************************************** */

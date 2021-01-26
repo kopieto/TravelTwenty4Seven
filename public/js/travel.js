@@ -107,12 +107,14 @@ function daysIn(month) {
 }
 
 function pickDate(e) {
-	document.querySelector(".selected-date").classList.remove("selected-date");
+	if (document.querySelector(".selected-date")) {
+		document.querySelector(".selected-date").classList.remove("selected-date");
+	}
 	this.classList.add("selected-date");
 
-	let reqDate = new Date(year, month, this.textContent);
+	let reqDate = new Date(year, month, this.textContent).toISOString();
 
-	fetch(`${location.origin}/travels?date=${reqDate}`)
+	fetch(`${location.origin}/tickets?date=${reqDate}`)
 		.then(data => data.json())			
 		.then(response => {
 			const {
