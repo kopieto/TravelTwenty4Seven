@@ -37,6 +37,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
+        httpOnly: true,
         maxAge: Number(process.env.SESS_MAXAGE),
         // sameSite: true,  ------changed after problems when deploing to heroku.doesnt store cookies
         sameSite: "none",
