@@ -22,6 +22,8 @@ const travelRouter = require("./src/routers/travel");
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/src/views");
 sgMail.setApiKey(process.env.SG_KEY);
+//not sure about line bellow, added to try fix cookies session
+app.set("true proxy", "true");
 
 
 //Middlewares
