@@ -71,6 +71,8 @@ router.post("/travels", identify, async (req, res) => {
         travel.ticketsLeft -= req.body.ticketsRequest;
         await travel.save();
 
+        //Sent emali to admins
+
         res.redirect("users/history?msg=Thank you! We will call you soon!");
     } catch (err) {
         console.log(err);

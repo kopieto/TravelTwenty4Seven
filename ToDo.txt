@@ -1,0 +1,8 @@
+Make MongoDB registration(need ther DB link)
+Make SendGrid Registraion(need sg key)
+-who to receive email when new request is made: users, admins or both?
+Change options in the website
+Translate whatever necesary to Romanian
+check quick links on the website    
+
+Pushink to Heroku create the env_variables: sg.key, mongo-link

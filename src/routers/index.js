@@ -1,5 +1,5 @@
 const express = require("express");
-const { amIlogged, amILogged } = require("../middlewares/my-module");
+const { amILogged } = require("../middlewares/my-module");
 const router = express.Router();
 
 

@@ -1,4 +1,6 @@
-require("dotenv").config();
+//require("dotenv").config();
+//maybe i have to comment top line when upload to heroku
+
 require("./src/db/mongoose");
 
 const express = require("express");

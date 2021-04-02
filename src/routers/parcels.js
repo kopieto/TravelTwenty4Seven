@@ -11,23 +11,24 @@ router.get("/parcels", identify, async (req, res) => {
     });
 });
 
-router.get("/parcels/all", identify, auth, async (req, res) => {
-    try {
-        const parcels = await Parcel.find();
+                //FOR FUTURE PURPOSE
+// router.get("/parcels/all", identify, auth, async (req, res) => {
+//     try {
+//         const parcels = await Parcel.find();
 
-        if (parcels.length < 1) {
-            res.send("Parcels list is empty");
-        } else {
-            res.render("parcels/all", {
-                user: req.user,
-                parcels
-            });
-        }
-    } catch (err) {
-        console.log(err);
-        res.send(err);
-    }
-});
+//         if (parcels.length < 1) {
+//             res.send("Parcels list is empty");
+//         } else {
+//             res.render("parcels/all", {
+//                 user: req.user,
+//                 parcels
+//             });
+//         }
+//     } catch (err) {
+//         console.log(err);
+//         res.send(err);
+//     }
+// });
 
 router.post("/parcels", identify, async (req, res) => {
     try {
@@ -39,6 +40,7 @@ router.post("/parcels", identify, async (req, res) => {
             sName: req.user.name
         })
         await parcel.save();
+
 
         // sgMail.send({
         //     to: "ceco.sirakov@gmail.com",
@@ -55,19 +57,21 @@ router.post("/parcels", identify, async (req, res) => {
     }
 });
 
-router.post("/parcels/update", identify, async (req, res) => {
-    console.log(req.body);
-    console.log("updated")
 
-    // sgMail.send({
-    //     to: "ceco.sirakov@gmail.com",
-    //     from: "ceco.sirakov@gmail.com",
-    //     subject: "Traveling",
-    //     text: emailContent
-    // })
+            //FOR FUTURE PURPOSES
+// router.post("/parcels/update", identify, async (req, res) => {
+//     console.log(req.body);
+//     console.log("updated");
 
-   res.redirect("/");
-});
+//     // sgMail.send({
+//     //     to: "ceco.sirakov@gmail.com",
+//     //     from: "ceco.sirakov@gmail.com",
+//     //     subject: "Traveling",
+//     //     text: emailContent
+//     // })
+
+//    res.redirect("/");
+// });
 
 router.get("/parcels/*", identify, async (req, res) => {
     res.render("parcels/parcels-form", {
